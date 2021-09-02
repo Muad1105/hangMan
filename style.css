@@ -1,0 +1,929 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hangman-section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(204, 204, 204);
+}
+
+.hang-section {
+  width: 50%;
+  height: 100%;
+  border: 5px solid rgb(223, 127, 223);
+  position: absolute;
+}
+/* --------------------------------- */
+/* ------Hang tree section---------- */
+/* --------------------------------- */
+
+.hang-tree {
+  display: none;
+}
+
+.hang-tree .hang-bar .bar-one {
+  position: absolute;
+  left: 4.4rem;
+  top: 30px;
+  height: 40px;
+  width: 550px;
+  border: 2px solid black;
+  background: brown;
+}
+.hang-tree .hang-bar .bar-two {
+  position: absolute;
+  top: 70px;
+  left: 75px;
+  width: 550px;
+  height: 20px;
+  border: 1px solid black;
+  transform: skew(25deg);
+  background: brown;
+}
+
+.hang-tree .hang-bar .bar-three {
+  position: absolute;
+  top: 40px;
+  left: 620px;
+  height: 40px;
+  width: 10px;
+  border: 1px solid black;
+  background: brown;
+  transform: skewY(60deg);
+}
+
+.hang-tree .hold-rod .rod-one {
+  position: absolute;
+  left: 150px;
+  top: 70px;
+  height: 650px;
+  width: 30px;
+  border: 1px solid;
+  border-color: black black transparent black;
+  background-color: brown;
+  z-index: 2;
+
+  /* transform: rotateY(40deg); */
+}
+
+.hang-tree .hold-rod .rod-two {
+  position: absolute;
+  top: 79px;
+  left: 180px;
+  height: 650px;
+  width: 17px;
+  border: 1px solid black;
+  transform: skewY(50deg);
+  border-color: black black transparent black;
+  background: brown;
+  z-index: 2;
+}
+
+.hang-tree .support-one {
+  position: absolute;
+  top: 70px;
+  left: 245px;
+  height: 110px;
+  width: 20px;
+  border: 1px solid black;
+  transform: skew(-50deg);
+  background: brown;
+  z-index: 2;
+}
+
+/* .hang-tree .support-two {
+  position: absolute;
+  top: 93px;
+  left: 260px;
+  height: 110px;
+  width: 20px;
+  border: 1px solid black;
+  transform: skew(-50deg) skewY(50deg);
+} */
+
+.hang-tree .bottom .bottom-floor {
+  position: absolute;
+  top: 600px;
+  left: 80px;
+  height: 220px;
+  width: 550px;
+  border: 1px solid black;
+  background: brown;
+  z-index: 1;
+  transform: skew(-35deg);
+}
+
+.hang-tree .bottom .bottom-right {
+  position: absolute;
+  top: 617px;
+  left: 630px;
+  width: 13px;
+  height: 220px;
+  border: 0.1px solid black;
+  transform: skew(-35deg, 70deg);
+  background: brown;
+}
+
+.hang-tree .bottom .bottom-screen {
+  position: absolute;
+  top: 820px;
+  left: 8px;
+  height: 30px;
+  width: 550px;
+  border: 1px solid black;
+  background: brown;
+  transform: skew(20deg);
+}
+
+/* ------------------------------- */
+/*---------- Hang rope------------ */
+/* ------------------------------- */
+
+.hang-rope {
+  display: none;
+}
+
+.hang-rope .rope-curve {
+  position: absolute;
+  top: 75px;
+  left: 520px;
+  height: 10px;
+  width: 20px;
+  border: 3px solid black;
+  border-radius: 80%;
+  border-color: rgb(31, 31, 31) rgb(31, 31, 31) transparent rgb(31, 31, 31);
+  background: rgb(146, 146, 146);
+  /* display: none; */
+}
+
+.hang-rope .rope-rod {
+  position: absolute;
+  top: 78px;
+  left: 520px;
+  height: 50px;
+  width: 20px;
+  border: 3px solid black;
+  border-color: transparent rgb(49, 49, 49) transparent rgb(49, 49, 49);
+  background: rgb(145, 145, 145);
+  /* display: none; */
+}
+
+.hang-rope .hang-tie {
+  position: absolute;
+  top: 127px;
+  left: 480px;
+  height: 80px;
+  width: 100px;
+  border: 3px solid black;
+  border-radius: 60%;
+  background: grey;
+  /* display: none; */
+}
+
+.hang-rope .hang-tie-inner {
+  height: 60px;
+  width: 80px;
+  border: 3px solid black;
+  margin: 6px;
+  border-radius: 60%;
+  background: rgb(204, 204, 204);
+  z-index: 2;
+}
+
+/* ------------------------- */
+/* ------creating head------ */
+/* ------------------------- */
+
+.head-happy {
+  position: absolute;
+  width: 100px;
+  height: 135px;
+  display: none;
+}
+
+.head-happy .face {
+  position: absolute;
+  top: 130px;
+  left: 480px;
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+  border-radius: 50%;
+  background: rgb(255, 248, 210);
+}
+
+.hair .hair-one {
+  position: absolute;
+  top: 108px;
+  left: 515px;
+  width: 5px;
+  height: 35px;
+  background: black;
+  transform: skew(-17deg) rotate(40deg);
+}
+
+.hair .hair-two {
+  position: absolute;
+  top: 107px;
+  left: 545px;
+  width: 5px;
+  height: 30px;
+  background: black;
+  transform: skew(-20deg) rotate(45deg);
+}
+
+.hair .hair-three {
+  position: absolute;
+  top: 113px;
+  left: 567px;
+  width: 5px;
+  height: 30px;
+  background: black;
+  transform: skew(-25deg) rotate(45deg);
+}
+
+.head-happy .face .left-eye {
+  position: absolute;
+  top: 33px;
+  left: 16px;
+  width: 20px;
+  height: 5px;
+  background: black;
+  transform: rotate(-30deg);
+}
+
+.head-happy .face .right-eye {
+  position: absolute;
+  top: 33px;
+  left: 58px;
+  width: 20px;
+  height: 5px;
+  background: black;
+  transform: rotate(30deg);
+}
+
+.head-happy .face .mouth {
+  position: absolute;
+  top: 45px;
+  left: 30px;
+  width: 35px;
+  height: 35px;
+  border: 5px solid black;
+  transform: rotate(45deg);
+  border-color: transparent black black transparent;
+  border-radius: 0 0 50% 0;
+  overflow: hidden;
+}
+
+/* --------------------- */
+/* -----head gloomy----- */
+/* --------------------- */
+
+.head-gloomy {
+  position: absolute;
+  width: 100px;
+  height: 135px;
+  display: none;
+}
+
+.head-gloomy .face {
+  position: absolute;
+  top: 130px;
+  left: 480px;
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+  border-radius: 50%;
+  background: rgb(255, 248, 210);
+}
+
+.hair .hair-one {
+  position: absolute;
+  top: 108px;
+  left: 515px;
+  width: 5px;
+  height: 35px;
+  background: black;
+  transform: skew(-17deg) rotate(40deg);
+}
+
+.hair .hair-two {
+  position: absolute;
+  top: 107px;
+  left: 545px;
+  width: 5px;
+  height: 30px;
+  background: black;
+  transform: skew(-20deg) rotate(45deg);
+}
+
+.hair .hair-three {
+  position: absolute;
+  top: 113px;
+  left: 567px;
+  width: 5px;
+  height: 30px;
+  background: black;
+  transform: skew(-25deg) rotate(45deg);
+}
+
+.head-gloomy .face .left-eye {
+  position: absolute;
+  top: 35px;
+  left: 16px;
+  width: 20px;
+  height: 5px;
+  background: black;
+  transform: rotate(-10deg);
+}
+
+.head-gloomy .face .right-eye {
+  position: absolute;
+  top: 35px;
+  left: 58px;
+  width: 20px;
+  height: 5px;
+  background: black;
+  transform: rotate(10deg);
+}
+
+.head-gloomy .face .mouth {
+  position: absolute;
+  top: 55px;
+  left: 35px;
+  width: 20px;
+  height: 20px;
+  border: 4px solid black;
+  /* transform: rotate(45deg); */
+  border-color: black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* ------------------------- */
+/* --------head dead-------- */
+/* ------------------------- */
+
+.head-dead {
+  position: absolute;
+  width: 100px;
+  height: 135px;
+  display: none;
+}
+
+.head-dead .face {
+  position: absolute;
+  top: 130px;
+  left: 480px;
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+  border-radius: 50%;
+  background: rgb(255, 248, 210);
+}
+
+.hair .hair-one {
+  position: absolute;
+  top: 108px;
+  left: 515px;
+  width: 5px;
+  height: 35px;
+  background: black;
+  transform: skew(-17deg) rotate(40deg);
+}
+
+.hair .hair-two {
+  position: absolute;
+  top: 107px;
+  left: 545px;
+  width: 5px;
+  height: 30px;
+  background: black;
+  transform: skew(-20deg) rotate(45deg);
+}
+
+.hair .hair-three {
+  position: absolute;
+  top: 113px;
+  left: 567px;
+  width: 5px;
+  height: 30px;
+  background: black;
+  transform: skew(-25deg) rotate(45deg);
+}
+
+.head-dead .face .left-eye {
+  position: absolute;
+  top: 35px;
+  left: 20px;
+  width: 20px;
+  height: 15px;
+  /* background: black; */
+  /* transform: rotate(-10deg); */
+}
+
+.head-dead .face .left-eye .line-one {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: black;
+  transform: rotate(45deg);
+}
+
+.head-dead .face .left-eye .line-two {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: black;
+  transform: rotate(-45deg);
+}
+
+.head-dead .face .right-eye {
+  position: absolute;
+  top: 35px;
+  left: 58px;
+  width: 20px;
+  height: 15px;
+  /* background: black; */
+  /* transform: rotate(-10deg); */
+}
+
+.head-dead .face .right-eye .line-one {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: black;
+  transform: rotate(45deg);
+}
+
+.head-dead .face .right-eye .line-two {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: black;
+  transform: rotate(-45deg);
+}
+
+.head-dead .face .mouth {
+  position: absolute;
+  top: 60px;
+  left: 33px;
+  width: 30px;
+  height: 33px;
+  border: 3px solid black;
+  transform: rotate(48deg);
+  border-color: black transparent transparent black;
+  border-radius: 55% 0 0 0;
+  overflow: hidden;
+}
+
+/* tshirt section */
+
+.body .shirt {
+  display: none;
+}
+
+.hang-section .body .shirt-body {
+  position: relative;
+  top: 228px;
+  left: 490px;
+  height: 115px;
+  width: 80px;
+  border: 3px solid black;
+  border-radius: 30% 30% 0 0;
+  background: rgb(73, 73, 226);
+  z-index: 3;
+}
+
+.shirt .shirt-left-hand {
+  position: absolute;
+  top: 226px;
+  left: 479px;
+  width: 30px;
+  height: 60px;
+  transform: rotate(50deg);
+  border: 3px solid black;
+  border-radius: 40% 0 0 0;
+  z-index: 2;
+  background: rgb(73, 73, 226);
+}
+
+.shirt .shirt-right-hand {
+  position: absolute;
+  top: 226px;
+  left: 550px;
+  width: 30px;
+  height: 60px;
+  transform: rotate(-50deg);
+  border: 3px solid black;
+  border-radius: 0 40% 0 0;
+  z-index: 2;
+  background: rgb(73, 73, 226);
+}
+
+/* body - right hand */
+
+.body .right-hand {
+  position: absolute;
+  top: 270px;
+  left: 583px;
+  width: 13px;
+  height: 40px;
+  border: 3px solid black;
+  background: rgb(243, 217, 217);
+  transform: rotate(-24deg);
+  z-index: 1;
+  border-color: transparent black transparent black;
+  border-radius: 0 0 40% 40%;
+  display: none;
+}
+
+.right-hand .palm {
+  position: absolute;
+  top: 29px;
+  left: -5px;
+  width: 16px;
+  height: 16px;
+  border: 3px solid black;
+  border-color: transparent black transparent black;
+  border-radius: 50%;
+}
+
+.right-hand .finger-one {
+  position: absolute;
+  top: 40px;
+  left: -7px;
+  width: 6px;
+  height: 13px;
+  border: 3px solid black;
+  transform: rotate(40deg);
+  border-color: transparent black black black;
+  border-radius: 0 0 30% 30%;
+}
+
+.right-hand .finger-two {
+  position: absolute;
+  top: 40px;
+  left: -2px;
+  width: 5px;
+  height: 13px;
+  border: 3px solid black;
+  transform: rotate(30deg);
+  border-color: transparent black black black;
+  border-radius: 0 0 30% 30%;
+}
+
+.right-hand .finger-three {
+  position: absolute;
+  top: 40px;
+  left: 3px;
+  width: 6px;
+  height: 13px;
+  border: 3px solid black;
+  transform: rotate(20deg);
+  border-color: transparent black black black;
+  border-radius: 0 0 30% 30%;
+}
+
+/* body - left hand */
+
+.body .left-hand {
+  position: absolute;
+  top: 270px;
+  left: 460px;
+  width: 13px;
+  height: 40px;
+  border: 3px solid black;
+  background: rgb(243, 217, 217);
+  transform: rotate(24deg);
+  z-index: 1;
+  border-color: transparent black transparent black;
+  border-radius: 0 0 40% 40%;
+  display: none;
+}
+
+.left-hand .palm {
+  position: absolute;
+  top: 29px;
+  left: -5px;
+  width: 16px;
+  height: 17px;
+  border: 3px solid black;
+  border-color: transparent black transparent black;
+  border-radius: 50%;
+}
+
+.left-hand .finger-one {
+  position: absolute;
+  top: 40px;
+  left: 7px;
+  width: 6px;
+  height: 13px;
+  border: 3px solid black;
+  transform: rotate(-40deg);
+  border-color: transparent black black black;
+  border-radius: 0 0 30% 30%;
+}
+
+.left-hand .finger-two {
+  position: absolute;
+  top: 40px;
+  left: 2px;
+  width: 5px;
+  height: 13px;
+  border: 3px solid black;
+  transform: rotate(-30deg);
+  border-color: transparent black black black;
+  border-radius: 0 0 30% 30%;
+}
+
+.left-hand .finger-three {
+  position: absolute;
+  top: 40px;
+  left: -2px;
+  width: 6px;
+  height: 13px;
+  border: 3px solid black;
+  transform: rotate(-20deg);
+  border-color: transparent black black black;
+  border-radius: 0 0 30% 30%;
+}
+
+/* pants */
+
+.trouser {
+  position: absolute;
+  top: 340px;
+  left: 490px;
+  width: 80px;
+  height: 30px;
+  border: 3px solid black;
+  border-color: black black transparent black;
+  background: rgb(153, 114, 14);
+  display: none;
+}
+
+.trouser-left-leg {
+  position: absolute;
+  top: 24px;
+  left: -3px;
+  width: 51%;
+  border: 3px solid black;
+  height: 100%;
+  border-color: transparent transparent black black;
+  background: rgb(153, 114, 14);
+  z-index: 3;
+}
+
+.trouser-center-curve {
+  position: absolute;
+  top: 24px;
+  left: 46%;
+  width: 13%;
+  height: 100%;
+  border: 3px solid black;
+  border-color: black black transparent black;
+  border-radius: 50% 50% 0 0;
+}
+
+.trouser-right-leg {
+  position: absolute;
+  top: 24px;
+  left: 43px;
+  width: 45%;
+  border: 3px solid black;
+  height: 100%;
+  border-color: transparent black black transparent;
+  background: rgb(153, 114, 14);
+  z-index: 3;
+}
+
+/* leg */
+
+.left-leg {
+  position: absolute;
+  top: 380px;
+  left: 500px;
+  height: 55px;
+  width: 15px;
+  border: 3px solid black;
+  border-color: transparent black transparent black;
+  background: rgb(228, 220, 220);
+  z-index: 1;
+  display: none;
+}
+
+.left-leg .foot {
+  position: absolute;
+  top: 45px;
+  left: -5px;
+  height: 20px;
+  width: 20px;
+  border: 3px solid black;
+  border-color: transparent black black black;
+  border-radius: 30% 30% 10% 10%;
+}
+
+.left-leg .foot .left-side {
+  position: absolute;
+  top: 15px;
+  left: -7px;
+  width: 3px;
+  height: 10px;
+  background: black;
+  transform: rotate(50deg);
+}
+
+.left-leg .foot .right-side {
+  position: absolute;
+  top: 15px;
+  left: 18px;
+  width: 3px;
+  height: 10px;
+  background: black;
+  transform: rotate(-50deg);
+}
+
+.left-leg .foot .sole {
+  position: absolute;
+  top: 23px;
+  left: -12px;
+  width: 37px;
+  height: 2px;
+  background: black;
+}
+
+/* right leg */
+
+.right-leg {
+  position: absolute;
+  top: 380px;
+  left: 545px;
+  height: 55px;
+  width: 15px;
+  border: 3px solid black;
+  border-color: transparent black transparent black;
+  background: rgb(228, 220, 220);
+  z-index: 1;
+  display: none;
+}
+
+.right-leg .foot {
+  position: absolute;
+  top: 45px;
+  left: -5px;
+  height: 20px;
+  width: 20px;
+  border: 3px solid black;
+  border-color: transparent black black black;
+  border-radius: 30% 30% 10% 10%;
+}
+
+.right-leg .foot .left-side {
+  position: absolute;
+  top: 15px;
+  left: -7px;
+  width: 3px;
+  height: 10px;
+  background: black;
+  transform: rotate(50deg);
+}
+
+.right-leg .foot .right-side {
+  position: absolute;
+  top: 15px;
+  left: 18px;
+  width: 3px;
+  height: 10px;
+  background: black;
+  transform: rotate(-50deg);
+}
+
+.right-leg .foot .sole {
+  position: absolute;
+  top: 23px;
+  left: -12px;
+  width: 37px;
+  height: 2px;
+  background: black;
+}
+
+/* word choose section */
+.word-find {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+}
+.fill-word {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+/* key on active */
+.onActive:active {
+  transform: translateY(4px);
+}
+
+.choose-word-type {
+  position: absolute;
+  left: 10%;
+  width: 50%;
+  height: 100%;
+
+  /* align-items: center; */
+  /* text-align: center; */
+}
+
+.choose-word-type h1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 50px;
+}
+
+.choose-word-type .choose-from {
+  position: absolute;
+  top: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.choose-word-type .countries {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  margin: 40px;
+  top: 100px;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #81dab3;
+  color: rgb(181, 45, 97);
+  border: 4px solid rgb(54, 136, 191);
+  cursor: pointer;
+}
+
+.choose-word-type .sports {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  margin: 40px;
+  top: 100px;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #81dab3;
+  color: rgb(181, 45, 97);
+  border: 4px solid rgb(54, 136, 191);
+  cursor: pointer;
+}
+.choose-word-type .fruits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  margin: 40px;
+  top: 100px;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #81dab3;
+  color: rgb(181, 45, 97);
+  border: 4px solid rgb(54, 136, 191);
+  cursor: pointer;
+}
+.choose-word-type .animals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  margin: 40px;
+  top: 100px;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #81dab3;
+  color: rgb(181, 45, 97);
+  border: 4px solid rgb(54, 136, 191);
+  cursor: pointer;
+}
