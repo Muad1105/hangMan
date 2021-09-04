@@ -219,6 +219,9 @@ const countriesOption = document.querySelector('.countries');
 const sportsOption = document.querySelector('.sports');
 const fruitsOption = document.querySelector('.fruits');
 
+// word section heading
+const heading = document.querySelector('.heading');
+
 // word find Section
 const wordSection = document.querySelector('.word-find');
 
@@ -228,13 +231,16 @@ const wordHolder = document.querySelector('.fill-word');
 // keyboard
 const keyboardSection = document.querySelector('.keyboard');
 
+let splitWord;
+
 // choose word
-async function chooseWord(arr) {
+function chooseWord(arr) {
+  console.log(arr);
   let array = arr;
   let random = Math.trunc(Math.random() * array.length);
   const word = arr[random].name;
   console.log(word);
-  const splitWord = word.split('');
+  splitWord = word.split('');
   console.log(splitWord);
   //   get the length of the random word
   let length = splitWord.length;
@@ -243,25 +249,43 @@ async function chooseWord(arr) {
   }
 }
 
-//each letter container function
-function letterContainer(word, i) {
-  let container = document.createElement('div');
-  container.style.width = '30px';
-  container.style.height = '40px';
-  container.style.fontSize = '22px';
-  container.style.textTransform = 'uppercase';
-  container.style.fontWeight = 'bold';
-  container.style.textAlign = 'center';
-  container.style.borderColor = 'transparent';
-  word != ' '
-    ? (container.style.borderBottom = '3px solid black')
-    : (container.style.border = 'transparent');
+function inputLetter(letter, i) {
+  console.log('inputletter');
+  // console.log(container[i]);
+  container.innerText = letter;
+}
 
-  i = 0
-    ? (container.style.marginLeft = '100px')
-    : (container.style.marginRight = '10px');
-  container.innerText = word;
-  wordHolder.appendChild(container);
+// creating space for each letter of word
+function alignLetterSpace(letter, i) {
+  let container;
+  if (!spaceSet) {
+    container = document.createElement('div');
+    container.style.width = '40px';
+    container.style.height = '40px';
+    container.style.fontSize = '30px';
+    container.style.textTransform = 'uppercase';
+    container.style.fontWeight = 'bold';
+    container.style.textAlign = 'center';
+
+    letter != ' '
+      ? (container.style.borderBottom = '13px solid rgb(211, 205, 17)')
+      : (container.style.border = 'transparent');
+
+    i = 0
+      ? (container.style.marginLeft = '100px')
+      : (container.style.marginRight = '10px');
+    // container.innerText = word;
+    wordHolder.appendChild(container);
+  } else {
+    inputLetter(letter, i);
+  }
+}
+
+let spaceSet = false;
+//each letter container function
+function letterContainer(letter, i) {
+  console.log('first', spaceSet);
+  alignLetterSpace(letter, i);
 }
 
 // keyboard
@@ -312,17 +336,45 @@ function keyboard() {
     key.setAttribute('id', e);
     key.innerText = e;
     keyboardSection.appendChild(key);
+
+    // select key
+    keyClick = document.querySelector('#e');
   });
 }
 
-chooseSection.addEventListener('click', function (e) {
+// create display head
+
+function createHeading(eventClicked) {
   chooseSection.style.display = 'none';
-  if (e.target.classList.contains('animals')) {
-    console.log('animal');
-    // create animal heading
-    const head = document.createElement('h2');
-    head.innerText = 'Animal';
-    wordSection.appendChild(head);
+
+  // event heading
+
+  const head = document.createElement('div');
+  head.innerText = eventClicked.value.toUpperCase();
+  head.style.fontSize = '40px';
+  head.style.textAlign = 'center';
+  head.style.color = '#6655ab';
+  heading.appendChild(head);
+
+  // eevent hint
+
+  const hint = document.createElement('div');
+  hint.style.fontSize = '18px';
+  hint.style.fontFamily = 'cursive';
+  hint.innerText = 'Hint?';
+  hint.style.cursor = 'pointer';
+  hint.style.textDecoration = 'underline';
+  hint.style.textAlign = 'center';
+  hint.style.color = 'rgb(14, 178, 85)';
+  hint.style.margin = '20px 0 0 80px';
+  hint.setAttribute('id', 'hint');
+  heading.appendChild(hint);
+}
+
+chooseSection.addEventListener('click', function (e) {
+  const eventClicked = e.target.classList;
+  if (eventClicked.contains('animals')) {
+    createHeading(eventClicked);
 
     chooseWord(animals);
 
@@ -330,12 +382,8 @@ chooseSection.addEventListener('click', function (e) {
 
     keyboard();
   }
-  if (e.target.classList.contains('sports')) {
-    console.log('sport');
-    // create animal heading
-    const head = document.createElement('h2');
-    head.innerText = 'Sport';
-    wordSection.appendChild(head);
+  if (eventClicked.contains('sports')) {
+    createHeading(eventClicked);
 
     chooseWord(sports);
 
@@ -343,12 +391,8 @@ chooseSection.addEventListener('click', function (e) {
 
     keyboard();
   }
-  if (e.target.classList.contains('countries')) {
-    console.log('country');
-    // create animal heading
-    const head = document.createElement('h2');
-    head.innerText = 'Country';
-    wordSection.appendChild(head);
+  if (eventClicked.contains('countries')) {
+    createHeading(eventClicked);
 
     chooseWord(countries);
 
@@ -356,12 +400,8 @@ chooseSection.addEventListener('click', function (e) {
 
     keyboard();
   }
-  if (e.target.classList.contains('fruits')) {
-    console.log('fruit');
-    // create animal heading
-    const head = document.createElement('h2');
-    head.innerText = 'Fruit';
-    wordSection.appendChild(head);
+  if (eventClicked.contains('fruits')) {
+    createHeading(eventClicked);
 
     chooseWord(fruits);
 
@@ -369,4 +409,23 @@ chooseSection.addEventListener('click', function (e) {
 
     keyboard();
   }
+});
+
+// click on keyboardSection
+function keepValue(e, i) {
+  const div = document.createElement('div');
+  div.innerText = e[i];
+}
+
+keyboardSection.addEventListener('click', function (e) {
+  spaceSet = true;
+  const letter = e.target.id.toUpperCase();
+  console.log(letter, splitWord);
+  splitWord.forEach((e, i) => {
+    console.log(e[i]);
+    if (e[i] == letter) {
+      console.log('value', e, i);
+      letterContainer(e, i);
+    }
+  });
 });
