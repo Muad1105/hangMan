@@ -27,6 +27,18 @@ const trouser = document.querySelector('.waist-down .trouser');
 const leftLeg = document.querySelector('.waist-down .left-leg');
 const rightLeg = document.querySelector('.waist-down .right-leg');
 
+const hangManArray = [
+  hangTree,
+  hangRope,
+  hangTie,
+  (head = [headHappy, headGloomy, headDead]),
+  shirt,
+  lefthand,
+  rightHand,
+  trouser,
+  leftLeg,
+  rightLeg,
+];
 // hangTree.style.display = 'block';
 
 //choose option
@@ -231,14 +243,14 @@ const wordHolder = document.querySelector('.fill-word');
 // keyboard
 const keyboardSection = document.querySelector('.keyboard');
 
-let splitWord;
+let splitWord, random, array, word;
 
 // choose word
 function chooseWord(arr) {
   console.log(arr);
-  let array = arr;
-  let random = Math.trunc(Math.random() * array.length);
-  const word = arr[random].name;
+  array = arr;
+  random = Math.trunc(Math.random() * array.length);
+  word = arr[random].name;
   console.log(word);
   splitWord = word.split('');
   console.log(splitWord);
@@ -249,26 +261,23 @@ function chooseWord(arr) {
   }
 }
 
-function inputLetter(letter, i) {
-  console.log('inputletter');
-  // console.log(container[i]);
-  container.innerText = letter;
-}
-
 // creating space for each letter of word
-function alignLetterSpace(letter, i) {
+function letterContainer(letter, i) {
   let container;
   if (!spaceSet) {
     container = document.createElement('div');
-    container.style.width = '40px';
-    container.style.height = '40px';
+    container.style.width = '50px';
+    container.style.height = '50px';
     container.style.fontSize = '30px';
     container.style.textTransform = 'uppercase';
     container.style.fontWeight = 'bold';
     container.style.textAlign = 'center';
+    container.style.innerText = letter;
+    container.style.position = 'relative';
+    container.setAttribute('class', 'wordLetters');
 
     letter != ' '
-      ? (container.style.borderBottom = '13px solid rgb(211, 205, 17)')
+      ? (container.style.borderBottom = '13px solid rgb(1, 5, 17)')
       : (container.style.border = 'transparent');
 
     i = 0
@@ -277,16 +286,11 @@ function alignLetterSpace(letter, i) {
     // container.innerText = word;
     wordHolder.appendChild(container);
   } else {
-    inputLetter(letter, i);
+    container.innerText = letter;
   }
 }
 
 let spaceSet = false;
-//each letter container function
-function letterContainer(letter, i) {
-  console.log('first', spaceSet);
-  alignLetterSpace(letter, i);
-}
 
 // keyboard
 function keyboard() {
@@ -330,6 +334,7 @@ function keyboard() {
     key.style.fontSize = '30px';
     key.style.textAlign = 'center';
     key.style.fontWeight = 'bold';
+    key.style.textTransform = 'uppercase';
     key.style.margin = '10px';
     key.style.cursor = 'pointer';
     key.setAttribute('class', 'onActive');
@@ -341,6 +346,8 @@ function keyboard() {
     keyClick = document.querySelector('#e');
   });
 }
+
+// getting hint id
 
 // create display head
 
@@ -369,6 +376,19 @@ function createHeading(eventClicked) {
   hint.style.margin = '20px 0 0 80px';
   hint.setAttribute('id', 'hint');
   heading.appendChild(hint);
+
+  // display description hint on click hint
+
+  const hintId = document.querySelector('#hint');
+
+  hintId.addEventListener('click', function (e) {
+    let hint = array[random].description;
+    hintId.style.textDecoration = 'none';
+    hintId.style.fontSize = '26px';
+    hintId.innerText = 'Hint!! - ' + hint;
+  });
+
+  console.log(hintId);
 }
 
 chooseSection.addEventListener('click', function (e) {
@@ -417,15 +437,77 @@ function keepValue(e, i) {
   div.innerText = e[i];
 }
 
+const hangManArray = [
+  hangTree,
+  hangRope,
+  hangTie,
+  (head = [headHappy, headGloomy, headDead]),
+  shirt,
+  lefthand,
+  rightHand,
+  trouser,
+  leftLeg,
+  rightLeg,
+];
+
+let hangTheMan = 0;
+
 keyboardSection.addEventListener('click', function (e) {
   spaceSet = true;
-  const letter = e.target.id.toUpperCase();
-  console.log(letter, splitWord);
+  console.log(e.target.innerText.toUpperCase());
+  const letter = e.target.innerText.toUpperCase();
+  console.log('letter', letter, 'splitword', splitWord);
   splitWord.forEach((e, i) => {
-    console.log(e[i]);
-    if (e[i] == letter) {
+    console.log(typeof e);
+    if (e.toUpperCase() == letter) {
       console.log('value', e, i);
-      letterContainer(e, i);
+      wordHolder.children[i].innerText = letter;
+      // letterContainer(e, i);
+    } else if (hangTheMan == 0) {
+      console.log(hangManArray);
+      hangTree.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 1) {
+      console.log(hangManArray);
+      hangRope.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 2) {
+      console.log(hangManArray);
+      hangTie.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 3) {
+      console.log(hangManArray);
+      headHappy.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 4) {
+      console.log(hangManArray);
+      shirt.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 5) {
+      console.log(hangManArray);
+      lefthand.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 6) {
+      console.log(hangManArray);
+      rightHand.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 7) {
+      console.log(hangManArray);
+      trouser.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
+    } else if (hangTheMan == 8) {
+      console.log(hangManArray);
+      leftLeg.style.display = 'block';
+      console.log(hangTheMan);
+      hangTheMan++;
     }
   });
 });
